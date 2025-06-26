@@ -109,12 +109,10 @@
           </section>
 
           <!-- Hidden total input for PHP -->
-          <input type="hidden" name="total" id="totalInput">
-          <input type="hidden" name="order_items" id="orderItemsInput">
-
+          <input type="hidden" name="total" id="totalInput" value="0">
 
           <button type="submit" class="pay-now">Pay Now</button>
-          </form>
+        </div>
 
         <div class="right-summary">
           <div class="cart-items"></div>
@@ -143,21 +141,16 @@
   <script src="payment.js"></script>
 
   <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const totalEl = document.querySelector(".total-amount");
-    const totalInput = document.getElementById("totalInput");
-    if (totalEl && totalInput) {
-      const totalValue = totalEl.textContent.replace(/[^\d.]/g, '');
-      totalInput.value = parseFloat(totalValue) || 0;
-    }
+    // Update total price in the hidden input
+    document.addEventListener("DOMContentLoaded", function () {
+      const totalEl = document.querySelector(".total-amount");
+      const totalInput = document.getElementById("totalInput");
 
-    const cart = localStorage.getItem("tfhCart");
-    const orderItemsInput = document.getElementById("orderItemsInput");
-    if (orderItemsInput) {
-      orderItemsInput.value = cart || "[]";
-    }
-  });
-</script>
-
+      if (totalEl && totalInput) {
+        const totalValue = totalEl.textContent.replace(/[^\d.]/g, '');
+        totalInput.value = parseFloat(totalValue) || 0;
+      }
+    });
+  </script>
 </body>
 </html>

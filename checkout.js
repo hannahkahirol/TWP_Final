@@ -77,3 +77,12 @@ function completeCheckout() {
   alert("Thank you! Your order has been placed.");
   window.location.href = "thankyou.html";
 }
+
+localStorage.setItem('tfhCart', JSON.stringify([
+  {
+    name: "13-inch MacBook Air with M2 Chip",
+    price: 3999.00,
+    quantity: 1,
+    image: "images/MacBook"
+  }
+]));
