@@ -108,8 +108,9 @@
             </div>
           </section>
 
-          <!-- Hidden total input for PHP -->
+          <!-- Hidden inputs to submit to PHP -->
           <input type="hidden" name="total" id="totalInput" value="0">
+          <input type="hidden" name="order_items" id="orderItemsInput" value="[]">
 
           <button type="submit" class="pay-now">Pay Now</button>
         </div>
@@ -141,14 +142,20 @@
   <script src="payment.js"></script>
 
   <script>
-    // Update total price in the hidden input
     document.addEventListener("DOMContentLoaded", function () {
+      // Set total price into hidden input
       const totalEl = document.querySelector(".total-amount");
       const totalInput = document.getElementById("totalInput");
-
       if (totalEl && totalInput) {
         const totalValue = totalEl.textContent.replace(/[^\d.]/g, '');
         totalInput.value = parseFloat(totalValue) || 0;
+      }
+
+      // Set cart items into hidden input as JSON
+      const cart = localStorage.getItem("tfhCart");
+      const orderItemsInput = document.getElementById("orderItemsInput");
+      if (orderItemsInput) {
+        orderItemsInput.value = cart || "[]";
       }
     });
   </script>

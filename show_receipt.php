@@ -52,4 +52,23 @@ $items = $conn->query("SELECT * FROM order_items WHERE order_id = $order_id");
         <th>Product</th>
         <th>Price (RM)</th>
         <th>Quantity</th>
-        <th>Subtotal (R
+        <th>Subtotal (RM)</th>
+      </tr>
+      <?php while ($item = $items->fetch_assoc()): ?>
+      <tr>
+        <td><?= $item['product_name'] ?></td>
+        <td><?= number_format($item['product_price'], 2) ?></td>
+        <td><?= $item['quantity'] ?></td>
+        <td><?= number_format($item['subtotal'], 2) ?></td>
+      </tr>
+      <?php endwhile; ?>
+      <tr class="total">
+        <td colspan="3" style="text-align: right;">Total:</td>
+        <td>RM <?= number_format($order['total'], 2) ?></td>
+      </tr>
+    </table>
+  </div>
+
+  <p><a href="Checkout.html">Return to Shop</a></p>
+</body>
+</html>
